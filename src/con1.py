@@ -4,7 +4,7 @@
     mainly stuff I copied from: http://www.jmapping.com/getting-started-with-scripted-geo-data-processing-postgresql-postgis-python-and-a-little-ogr/
 """
 
-import psycopg2#, urllib, zipfile, os
+import psycopg2
 
 import users_and_passwords # Hide the names and passwords in a file not shared as open source...
 uap = users_and_passwords.UaP()
