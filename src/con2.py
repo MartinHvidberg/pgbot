@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*- 
 
 """ Playing around with basic pg read access, from Python
     mainly stuff I copied from: http://www.jmapping.com/getting-started-with-scripted-geo-data-processing-postgresql-postgis-python-and-a-little-ogr/
@@ -36,9 +37,22 @@ cur.execute(sql_list_fields)
 for row in cur:
     print row
 
-
-
 # Check domain violation
+# e.g. komnr must be in [100..999]
+sql_bot = "select * from "+tbl_funa+" where not komnr BETWEEN 100 AND 999;"
+cur.execute(sql_bot)
+for row in cur:
+    print "Violation mode 1: " + str(row)
+# e.g. zone must be in [1..3]
+sql_bot = "select * from "+tbl_funa+" where not zone BETWEEN 1 AND 3;"
+cur.execute(sql_bot)
+for row in cur:
+    print "Violation mode 2: " + str(row)
+# e.g. zonestaatus must love ["Byzone", "Sommerhusområde", "Landzone"]
+sql_bot = "select * from samp.ers_zonekort where not zonestatus IN ('Byzone', 'Sommerhusomr�de', 'Landzone');"
+cur.execute(sql_bot)
+for row in cur:
+    print "Violation mode 3: " + str(row)
 
 
 cur.close()
